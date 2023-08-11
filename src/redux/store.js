@@ -1,0 +1,23 @@
+import { configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { authApi } from "./api/authApi";
+import { contactApi } from "./api/contactApi";
+import authSlice from "./services/authSlice";
+import contactSlice from "./services/contactSlice";
+import paginationSlice from "./services/paginationSlice";
+
+export const store = configureStore({
+  reducer: {
+    [authApi.reducerPath]: authApi.reducer,
+    [contactApi.reducerPath]: contactApi.reducer,
+    authSlice: authSlice,
+    contactSlice: contactSlice,
+    paginationSlice: paginationSlice,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      authApi.middleware,
+      contactApi.middleware),
+});
+
+setupListeners(store.dispatch);
