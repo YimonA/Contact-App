@@ -1,5 +1,7 @@
 // import React from "react";
 import Cookies from "js-cookie";
+import { BiSolidLock } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const profile = JSON.parse(Cookies.get("profile"));
@@ -17,6 +19,12 @@ const Profile = () => {
         <p>Email_verified_at: {profile?.user?.email_verified_at}</p>
         <p>Created_at: {profile?.user?.created_at}</p>
         <p>Updated_at: {profile?.user?.updated_at}</p>
+        <Link to={"/change-password"}>
+          <button className="flex items-center gap-3 px-5 py-3 rounded-md text-lg font-medium bg-blue-700 text-white">
+            <BiSolidLock size={"1.5rem"} />
+            Change Password
+          </button>
+        </Link>
       </div>
     </div>
   );

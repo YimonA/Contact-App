@@ -9,7 +9,6 @@ import {BiStar} from "react-icons/bi";
 import {BiLogOutCircle} from "react-icons/bi";
 import {BiSolidLock} from "react-icons/bi";
 import {BiUserCircle} from "react-icons/bi"
-
 import {  useContextCustom } from '../context/stateContext'
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -46,7 +45,7 @@ const Sidebar = () => {
     {
       icon: <BiSolidUserDetail size={'1.8rem'}/>,
       content: "Contacts",
-      link:"/",
+      link:"/contacts",
     },
     // {
     //   icon: <BsClockHistory size={'1.5rem'}/>,
@@ -94,8 +93,8 @@ const Sidebar = () => {
           </button>
           </Link>
       <ul className="">
-        {menuItems.map((menu) => (
-          <div key={menu.index} className="p-3 hover:bg-blue-700 hover:text-white duration-300 ease-in-out">
+        {menuItems.map((menu,index) => (
+          <div key={index} className="p-3 hover:bg-blue-700 hover:text-white duration-300 ease-in-out">
             <Link to={menu.link}>
             <li className=" flex items-center gap-5 ps-2 cursor-pointer">
               {menu.icon}

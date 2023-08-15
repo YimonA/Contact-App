@@ -11,9 +11,9 @@ import { useContextCustom } from "../context/stateContext";
 const ChangePassword = () => {
   const { password, setPassword } = useContextCustom();
   const user = JSON.parse(Cookies.get("user"));
-  const { id } = useParams();
+//   const { id } = useParams();
   const token = Cookies.get("token");
-  const { data: contact } = useGetSingleContactQuery({ id, token });
+  //const { data: contact } = useGetSingleContactQuery({ id, token });
   const [changePassword,{isLoading}] = useChangePasswordMutation({
     user,
     token,
@@ -21,7 +21,6 @@ const ChangePassword = () => {
   const { data } = changePassword(token,user);
   console.log("changePass",data);
   const nav = useNavigate();
-  console.log("clg", contact?.contact?.name);
 
   const form = useForm({
     initialValues: {
@@ -31,11 +30,11 @@ const ChangePassword = () => {
     },
 
     validate: {
-      name: (value) =>
-        value.length < 2 ? "Name must have at least 2 letters" : null,
+    //   name: (value) =>
+    //     value.length < 2 ? "Name must have at least 2 letters" : null,
 
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-      phone: hasLength({ min: 9, max: 11 }),
+    //   email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+    //   phone: hasLength({ min: 9, max: 11 }),
     },
   });
 
@@ -44,10 +43,9 @@ const ChangePassword = () => {
       <form
         onSubmit={form.onSubmit(async (values) => {
           try {
-            const { data } = await updateContact({
-              id,
+            const { data } = await changePassword({
               token,
-              contact: values,
+              user: values,
             });
             console.log("v", values);
             console.log("t", token);
@@ -65,12 +63,10 @@ const ChangePassword = () => {
         className=" w-96 p-7 flex flex-col shadow-lg gap-10"
       >
         <h2 className="text-2xl text-gray-500 font-semibold mx-auto">
-          Change Password{" "}
-        </h2>
-        <TextInput value={contact?.contact?.name} label="Current Password" />
-        <TextInput value={contact?.contact?.email} label="New Password" />
+          Change Password</h2>
+        <TextInput  label="Current Password" />
+        <TextInput  label="New Password" />
         <TextInput
-          value={contact?.contact?.phone}
           label="Password Confirmation"
         />
         <button

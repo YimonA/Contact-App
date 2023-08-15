@@ -1,35 +1,32 @@
-// import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "../pages/Dashboard";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import Routeguard from "../components/Routeguard";
-import UserInfoLayout from "../pages/UserInfoLayout";
-import CreateContactLayout from "../pages/CreateContactLayout";
-import UpdateContactLayout from "../pages/UpdateContactLayout";
-import ProfileLayout from "../pages/ProfileLayout";
-import ChangePasswordLayout from "../pages/ChangePasswordLayout";
+import ContactTable from "../components/ContactTable";
+import Error from "../pages/Error";
+import Profile from "../components/Profile";
+import ChangePassword from "../components/ChangePassword";
+import CreateContact from "../components/CreateContact";
+import UpdateContact from "../components/UpdateContact";
 
 const Path = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Routeguard>
-              <Dashboard />
-            </Routeguard>
-          }
-        />
+        <Route path="/" element={<Dashboard view={""}/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<ProfileLayout />} />
-        <Route path="//change-password" element={<ChangePasswordLayout />} />
+        <Route
+          path="/contacts"
+          element={<Dashboard view={<ContactTable />} />}
+        />
+        <Route path="/profile" element={<Dashboard view={<Profile />} />} />
+        <Route path="/change-password" element={<Dashboard view={<ChangePassword />} />} />
 
-        <Route path="/create" element={<CreateContactLayout />} />
-        <Route path="/update/:id" element={<UpdateContactLayout />} />
-        <Route path="/user/:id" element={<UserInfoLayout />} />
+        <Route path="/create" element={<Dashboard view={<CreateContact />} />} />
+        <Route path="/update/:id" element={<Dashboard view={<UpdateContact />} />} />
+        {/* <Route path="/user/:id" element={<Dashboard view={} />} /> */}
+        <Route path={"/*"} element={<Error />} />
       </Routes>
     </BrowserRouter>
   );

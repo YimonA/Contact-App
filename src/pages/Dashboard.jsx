@@ -1,17 +1,22 @@
-// import React from "react";
 import Navbar from "../components/Navbar";
-import ContactTable from '../components/ContactTable';
 import Sidebar from "../components/Sidebar";
+import Routeguard from "../components/Routeguard";
+import PropTypes from "prop-types";
 
-const Dashboard = () => {
+const Dashboard = ({ view }) => {
+  Dashboard.propTypes = {
+    view: PropTypes.any,
+  };
   return (
-    <div className=" container-fluid h-screen">
-      <Navbar />
-      <div className=" flex justify-start items-center">
-        <Sidebar />
-        <ContactTable />
+    <Routeguard>
+      <div className=" container-fluid h-screen">
+        <Navbar />
+        <div className=" flex justify-start items-center">
+          <Sidebar />
+          {view}
+        </div>
       </div>
-    </div>
+    </Routeguard>
   );
 };
 
