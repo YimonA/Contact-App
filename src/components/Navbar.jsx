@@ -37,8 +37,7 @@ const Navbar = () => {
   };
 
   return (
-    <div>
-      <div className=" p-5 shadow-md flex justify-between items-center">
+      <div className="h-[70px] p-5 shadow-md flex justify-between items-center">
         <div className=" flex gap-1 items-center">
           <AiOutlineClose
             size={"1.5rem"}
@@ -68,7 +67,6 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-    </div>
   );
 };
 
