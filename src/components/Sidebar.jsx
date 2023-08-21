@@ -84,7 +84,7 @@ const Sidebar = () => {
   ]);
 
   return (
-    <div className={`${showSidebar? "sm:w-[50%] md:w-[270px]":"w-0 -translate-x-[300px]"} h-[calc(100vh - 70px)] border-2 duration-[1000ms] ease-in-out bg-white z-20 mt-1`}>
+    <div className={`${showSidebar? "sm:w-[50%] md:w-[270px]":"w-0 -translate-x-[300px]"} sidebar-height border-2 duration-[1000ms] ease-in-out bg-white z-20 mt-1`}>
       <Link to={"/create"}>        <button
             className="my-5 w-[90%] h-[65px] bg-blue-700 hover:bg-blue-800 flex items-center gap-3 border-2 rounded-full mx-auto text-white p-3 "
           >
