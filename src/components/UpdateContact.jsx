@@ -37,7 +37,7 @@ const UpdateContact = () => {
   });
 
   return (
-    <div className=" flex justify-center items-center w-full">
+    <div className="pt-20 flex justify-center items-center w-full">
       <form
         onSubmit={form.onSubmit(async (values) => {
           try {

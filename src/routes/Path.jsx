@@ -2,18 +2,21 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "../pages/Dashboard";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import ContactTable from "../components/ContactTable";
+import Welcome from "../components/Welcome";
 import Error from "../pages/Error";
+import ContactTable from "../components/ContactTable";
 import Profile from "../components/Profile";
 import ChangePassword from "../components/ChangePassword";
 import CreateContact from "../components/CreateContact";
 import UpdateContact from "../components/UpdateContact";
+import UserInfo from "../components/UserInfo";
+
 
 const Path = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Dashboard view={""}/>} />
+        <Route path="/" element={<Dashboard view={<Welcome/>}/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route
@@ -25,7 +28,7 @@ const Path = () => {
 
         <Route path="/create" element={<Dashboard view={<CreateContact />} />} />
         <Route path="/update/:id" element={<Dashboard view={<UpdateContact />} />} />
-        {/* <Route path="/user/:id" element={<Dashboard view={} />} /> */}
+        <Route path="/user/:id" element={<Dashboard view={<UserInfo/>} />} />
         <Route path={"/*"} element={<Error />} />
       </Routes>
     </BrowserRouter>

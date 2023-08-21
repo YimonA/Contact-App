@@ -52,19 +52,19 @@ const Sidebar = () => {
     //   content: "Recent",
     //   link:"",
     // },
-    {
-      icon: <BiStar size={'1.8rem'}/>,
-      content: "Favorite",
-      link:"",
+    // {
+    //   icon: <BiStar size={'1.8rem'}/>,
+    //   content: "Favorite",
+    //   link:"",
 
-    },
+    // },
     
-    {
-      icon: <BiTrash size={'1.5rem'}/>,
-      content: "Trash",
-      link:"",
+    // {
+    //   icon: <BiTrash size={'1.5rem'}/>,
+    //   content: "Trash",
+    //   link:"",
 
-    },
+    // },
     // {
     //   icon: <BiHelpCircle size={'1.8rem'}/>,
     //   content: "Help",
@@ -76,11 +76,11 @@ const Sidebar = () => {
     //   content: "Setting",
     //   link:"",
     // },
-    {
-      icon: <BiSolidLock size={'1.5rem'}/>,
-      content: "Change Password",
-      link:"/change-password",
-    }
+    // {
+    //   icon: <BiSolidLock size={'1.5rem'}/>,
+    //   content: "Change Password",
+    //   link:"/change-password",
+    // }
   ]);
 
   return (

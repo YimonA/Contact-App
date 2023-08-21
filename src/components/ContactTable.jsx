@@ -91,11 +91,11 @@ const ContactTable = () => {
                   <p>User Info</p>
                 </Menu.Item>
               </Link>
-              <Link to={`/user/${contact?.id}`}>
+              {/* <Link to={`/user/${contact?.id}`}>
                 <Menu.Item component="a" target="_blank">
                   <p>Favorite</p>
                 </Menu.Item>
-              </Link>
+              </Link> */}
               <Link to={`/update/${contact?.id}`}>
                 <Menu.Item component="a" target="_blank">
                   <p>Edit</p>
@@ -115,26 +115,27 @@ const ContactTable = () => {
       </tr>
     ));
 
-  const pagi = links
-    ?.filter((link) => {
-      if (link?.url !== null) {
-        console.log("lll", link);
-        return link;
-      }
-    })
-    .map((lin) => {
-      return (
-        <Link key={lin.index} to={lin?.url}>
-          <li>{lin?.label}</li>
-        </Link>
-      );
-    });
-  console.log("pa", pagi);
+  // const pagi = links
+  //   ?.filter((link) => {
+  //     if (link?.url !== null) {
+  //       console.log("lll", link);
+  //       return link;
+  //     }
+  //   })
+  //   .map((lin) => {
+  //     return (
+  //       <Link key={lin.index} to={lin?.url}>
+  //         <li>{lin?.label}</li>
+  //       </Link>
+  //     );
+  //   });
+  // console.log("pa", pagi);
 
   return (
     <div className=" w-full px-10 duration-[1000ms] ease-in-out">
       <div className="pt-10 flex items-center gap-2 px-10">
         <Input
+        className="border-2 border-blue-500 rounded-md"
           variant="filled"
           placeholder="Search"
           value={searchTerm}
