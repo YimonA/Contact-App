@@ -11,7 +11,7 @@ const Dashboard = ({ view }) => {
     <Routeguard>
       <div className=" container-fluid h-screen">
         <Navbar />
-        <div className=" flex justify-start items-start">
+        <div className="h-full flex justify-start items-start">
           <Sidebar />
           {view}
         </div>
