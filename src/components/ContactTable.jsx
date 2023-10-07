@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addContacts, setSearchTerm } from "../redux/services/contactSlice";
-import { addLinks } from "../redux/services/paginationSlice";
+// import { addLinks } from "../redux/services/paginationSlice";
 
 import { Menu, Button } from "@mantine/core";
 //import {useGetUserProfileQuery} from "../redux/api/userProfileApi";
@@ -24,15 +24,15 @@ const ContactTable = () => {
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contactSlice.contacts);
   const searchTerm = useSelector((state) => state.contactSlice.searchTerm);
-  const links = useSelector((state) => state.paginationSlice.links);
+  // const links = useSelector((state) => state.paginationSlice.links);
 
-  console.log("l", links);
+  // console.log("l", links);
   console.log("contact", contacts);
   console.log("dc", data?.contacts?.data);
 
   useEffect(() => {
     dispatch(addContacts(data?.contacts?.data));
-    dispatch(addLinks(data?.contacts?.links));
+    // dispatch(addLinks(data?.contacts?.links));
   }, [data]);
 
   const deleteHandler = (id) => {

@@ -7,78 +7,81 @@ import {
   useGetSingleContactQuery,
   useUpdateContactMutation,
 } from "../redux/api/contactApi";
+import { useEffect, useState } from "react";
 
 const UpdateContact = () => {
+  const [name, setName] = useState();
+  const [phone, setPhone] = useState();
+  const [email, setEmail] = useState();
+  const [address, setAddress] = useState();
   const { id } = useParams();
   const token = Cookies.get("token");
   const { data: contact } = useGetSingleContactQuery({ id, token });
-  const [updateContact, { isLoading }] = useUpdateContactMutation({
-    id,
-    contact,
-    token,
-  });
+  const [updateContact, { isLoading }] = useUpdateContactMutation();
   const nav = useNavigate();
-  console.log("clg", contact?.contact?.name);
-  const form = useForm({
-    initialValues: {
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-    },
 
-    validate: {
-      name: (value) =>
-        value.length < 2 ? "Name must have at least 2 letters" : null,
+  useEffect(() => {
+    setName(contact?.contact?.name);
+    setPhone(contact?.contact?.phone);
+    setEmail(contact?.contact?.email);
+    setAddress(contact?.contact?.address);
+  }, [contact]);
+  const editHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await updateContact({
+        id,
+        token,
+        contact: {
+          name,
+          phone: Number(phone),
+          email,
+          address,
+        },
+      });
+      console.log("dd", response);
+      console.log("dd", contact);
+      //dispatch(addUser({ user: data?.user, token: data?.token }));
 
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-      phone: hasLength({ min: 9, max: 11 }),
-    },
-  });
+      if (response?.data?.success) {
+        nav("/contacts");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="pt-20 flex justify-center items-center w-full">
       <form
-        onSubmit={form.onSubmit(async (values) => {
-          try {
-            const { data } = await updateContact({
-              id,
-              token,
-              contact: values,
-            });
-            console.log("v", values);
-            console.log("t", token);
-
-            console.log(data);
-            //dispatch(addUser({ user: data?.user, token: data?.token }));
-
-            if (data?.success) {
-              nav("/");
-            }
-          } catch (error) {
-            console.log(error);
-          }
-        })}
+        onSubmit={editHandler}
         className=" w-96 p-7 flex flex-col shadow-lg gap-10"
       >
         <h2 className="text-2xl text-gray-500 font-semibold mx-auto">
           Edit Contact
         </h2>
         <TextInput
-          value={contact?.contact?.name}
-          label="Enter your Name..."
+        type="password"
+          value={name}
+          onChange={(event) => setName(event.currentTarget.value)}
+          label="Enter Name..."
         />
         <TextInput
-          value={contact?.contact?.email}
-          label="Enter your Email..."
+        type="password"
+          value={email}
+          onChange={(event) => setEmail(event.currentTarget.value)}
+          label="Enter Email..."
         />
         <TextInput
-          value={contact?.contact?.phone}
-          label="Enter your Phone..."
+        type="password"
+          value={phone}
+          onChange={(event) => setPhone(event.currentTarget.value)}
+          label="Enter Phone..."
         />
         <TextInput
-          value={contact?.contact?.address}
-          label="Enter your Address..."
+          value={address}
+          onChange={(event) => setAddress(event.currentTarget.value)}
+          label="Enter Address..."
         />
 
         <button

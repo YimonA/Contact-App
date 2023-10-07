@@ -33,10 +33,10 @@ const Register = () => {
       <form
         onSubmit={form.onSubmit(async (values) => {
           try {
-            const { data } = await register(values);
+            const response = await register(values);
             console.log(values);
-            console.log(data);
-            if (data?.success) {
+            console.log('data',response);
+            if (response?.data?.success) {
               nav("/login");
             }
           } catch (error) {

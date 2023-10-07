@@ -1,5 +1,5 @@
 // import React from 'react'
-import { Loader, TextInput } from "@mantine/core";
+import { Loader, PasswordInput, TextInput } from "@mantine/core";
 import { hasLength, useForm } from "@mantine/form";
 
 import { useNavigate, useParams } from "react-router-dom";
@@ -7,66 +7,67 @@ import Cookies from "js-cookie";
 import { useChangePasswordMutation } from "../redux/api/authApi";
 import { useGetSingleContactQuery } from "../redux/api/contactApi";
 import { useContextCustom } from "../context/stateContext";
+import { useState } from "react";
 
 const ChangePassword = () => {
+  const [currentPW, setCurrentPW] = useState();
+  const [pw, setPW] = useState();
+  const [confirmPW, setConfirmPW] = useState();
+
   const { password, setPassword } = useContextCustom();
   const user = JSON.parse(Cookies.get("user"));
-//   const { id } = useParams();
+  //   const { id } = useParams();
   const token = Cookies.get("token");
   //const { data: contact } = useGetSingleContactQuery({ id, token });
-  const [changePassword,{isLoading}] = useChangePasswordMutation({
-    user,
-    token,
-  });
-  const { data } = changePassword(token,user);
-  console.log("changePass",data);
+  const [changePassword, { isLoading }] = useChangePasswordMutation();
   const nav = useNavigate();
 
-  const form = useForm({
-    initialValues: {
-        current_password: "",
-        password: "",
-        password_confirmation: "",
-    },
+  const changePasswordHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await changePassword({
+        token,
+        user: {
+          current_password: currentPW,
+          password: pw,
+          password_confirmation: confirmPW,
+        },
+      });
+      console.log("user", user);
 
-    validate: {
-    //   name: (value) =>
-    //     value.length < 2 ? "Name must have at least 2 letters" : null,
+      console.log("response", response);
+      //dispatch(addUser({ user: data?.user, token: data?.token }));
 
-    //   email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-    //   phone: hasLength({ min: 9, max: 11 }),
-    },
-  });
+      if (response?.data?.success) {
+        nav("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className=" flex justify-center items-center w-full">
       <form
-        onSubmit={form.onSubmit(async (values) => {
-          try {
-            const { data } = await changePassword({
-              token,
-              user: values,
-            });
-            console.log("v", values);
-            console.log("t", token);
-
-            console.log(data);
-            //dispatch(addUser({ user: data?.user, token: data?.token }));
-
-            if (data?.success) {
-              nav("/");
-            }
-          } catch (error) {
-            console.log(error);
-          }
-        })}
+        onSubmit={changePasswordHandler}
         className=" w-96 p-7 flex flex-col shadow-lg gap-10"
       >
         <h2 className="text-2xl text-gray-500 font-semibold mx-auto">
-          Change Password</h2>
-        <TextInput  label="Current Password" />
-        <TextInput  label="New Password" />
-        <TextInput
+          Change Password
+        </h2>
+        <PasswordInput
+          value={currentPW}
+          onChange={(event) => setCurrentPW(event.currentTarget.value)}
+          label="Current Password"
+        />
+        <PasswordInput
+          value={pw}
+          onChange={(event) => setPW(event.currentTarget.value)}
+          label="New Password"
+        />
+        <PasswordInput
+          value={confirmPW}
+          onChange={(event) => setConfirmPW(event.currentTarget.value)}
           label="Password Confirmation"
         />
         <button

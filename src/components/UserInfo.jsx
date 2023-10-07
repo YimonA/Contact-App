@@ -25,7 +25,7 @@ const UserInfo = () => {
         <p>{data?.contact?.email}</p>
         <p>{data?.contact?.phone}</p>
         {/* <p>{data?.contact?.address}</p> */}
-        <Link to={"/"}>
+        <Link to={"/contacts"}>
           <button type="submit" className=" bg-blue-700 text-white px-4 py-1 w-80">
             Back
           </button>

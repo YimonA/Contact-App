@@ -40,7 +40,7 @@ const CreateContact = () => {
             //dispatch(addUser({ user: data?.user, token: data?.token }));
 
             if (data?.success) {
-              nav("/");
+              nav("/contacts");
             }
             
           } catch (error) {
