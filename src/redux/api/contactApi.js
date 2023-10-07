@@ -15,6 +15,13 @@ export const contactApi = createApi({
       }),
       providesTags: ["contact"],
     }),
+    getContactPage: builder.query({
+      query: ({token,page}) => ({
+        url: `/contact?page=${page}`,
+        headers: { authorization: `Bearer ${token}` },
+      }),
+      providesTags: ["contact"],
+    }),
     createContact: builder.mutation({
       query: ({ token, contact }) => ({
         url: `/contact`,
@@ -51,7 +58,7 @@ export const contactApi = createApi({
   }),
 });
 
-export const { useGetContactQuery, useCreateContactMutation,useDeleteContactMutation,useGetSingleContactQuery,useUpdateContactMutation } = contactApi;
+export const { useGetContactQuery, useCreateContactMutation,useDeleteContactMutation,useGetSingleContactQuery,useUpdateContactMutation,useGetContactPageQuery } = contactApi;
 
 //  https://contact-app.mmsdev.site/api/v1/user-profile
 

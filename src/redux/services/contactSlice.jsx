@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   contacts: [],
   searchTerm: "",
+  links:null,
 };
 
 export const contactSlice = createSlice({
@@ -13,11 +14,14 @@ export const contactSlice = createSlice({
     addContacts:(state,{payload})=>{
         state.contacts=payload;
     },
+    addLinks:(state,{payload})=>{
+      state.links=payload;
+  },
     setSearchTerm:(state,{payload})=>{
         state.searchTerm=payload;
     }
   },
 });
 
-export const {addContacts,setSearchTerm} = contactSlice.actions;
+export const {addContacts,setSearchTerm,addLinks} = contactSlice.actions;
 export default contactSlice.reducer;
