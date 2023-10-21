@@ -2,7 +2,6 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Routeguard from "../components/Routeguard";
 import PropTypes from "prop-types";
-//start
 const Dashboard = ({ view }) => {
   Dashboard.propTypes = {
     view: PropTypes.any,
