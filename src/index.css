@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+  --min-height: calc(100vh - 80px);
+}
 .sidebar-height {
     height: calc(100vh - 75px);
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+  @layer components {
+    .input-style {
+      @apply px-3 py-1 rounded h-10 border border-blue-400 focus:border-blue-600 focus:outline-none;
+    }
   }

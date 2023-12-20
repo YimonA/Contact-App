@@ -180,7 +180,7 @@ const ContactTable = () => {
       </div>
 
       <div className="pt-5 px-10">
-        <Table>
+        <Table className="">
           <thead>
             <tr>
               <th>Name</th>

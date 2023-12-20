@@ -8,9 +8,9 @@ const Dashboard = ({ view }) => {
   };
   return (
     <Routeguard>
-      <div className=" container-fluid min-h-screen">
+      <div className=" container-fluid h-screen">
         <Navbar />
-        <div className="h-full flex justify-start items-start">
+        <div className="flex justify-start items-start h-[var(--min-height)] overflow-y-auto">
           <Sidebar />
           {view}
         </div>

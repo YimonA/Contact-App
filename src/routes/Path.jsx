@@ -10,6 +10,8 @@ import ChangePassword from "../components/ChangePassword";
 import CreateContact from "../components/CreateContact";
 import UpdateContact from "../components/UpdateContact";
 import UserInfo from "../components/UserInfo";
+import CreateContact1 from "../components/CreateContact1";
+import UpdateContact1 from "../components/UpdateContact1";
 
 
 const Path = () => {
@@ -27,7 +29,11 @@ const Path = () => {
         <Route path="/change-password" element={<Dashboard view={<ChangePassword />} />} />
 
         <Route path="/create" element={<Dashboard view={<CreateContact />} />} />
+        {/* <Route path="/create" element={<Dashboard view={<CreateContact1 />} />} /> */}
+
         <Route path="/update/:id" element={<Dashboard view={<UpdateContact />} />} />
+        {/* <Route path="/update/:id" element={<Dashboard view={<UpdateContact1 />} />} /> */}
+
         <Route path="/user/:id" element={<Dashboard view={<UserInfo/>} />} />
         <Route path={"/*"} element={<Error />} />
       </Routes>
